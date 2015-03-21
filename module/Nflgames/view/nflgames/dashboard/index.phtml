@@ -1,0 +1,147 @@
+<div id="wrapper">
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse"
+				data-target=".navbar-ex1-collapse">
+				<span class="sr-only">Toggle navigation</span> <span
+					class="icon-bar"></span> <span class="icon-bar"></span> <span
+					class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="<?php echo $this->url('home') ?>"><img
+				src="<?php echo $this->basePath('img/zf2-logo.png') ?>"
+				alt="Zend Framework 2" /></a>
+		</div>
+
+		<div class="collapse navbar-collapse navbar-ex1-collapse">
+			<ul id="active" class="nav navbar-nav side-nav">
+			<?php $selected = true; ?>
+			<?php foreach ($teams as $team) { ?>
+				<li <?php if ($selected) echo 'class="selected"' ?>><a
+					href="/nflgames/dashboard?team_id=<?php echo $team->getId() ?>"><?php echo strtoupper($team->getCity()) . ' ' . strtoupper($team->getName()) ?></a></li>
+			<?php $selected = false; ?>
+			<?php } ?>
+			</ul>
+		</div>
+	</nav>
+
+	<div id="page-wrapper">
+
+		<div class="row">
+			<div class="col-lg-12">
+				<h1>
+					Team Dashboard <small>Statistics and more</small>
+				</h1>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-6">
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<h3 class="panel-title">
+							<i class="fa fa-bar-chart-o"></i> Home Team Performance
+						</h3>
+					</div>
+					<div class="panel-body">
+						<div id="chart1"></div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-6">
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<h3 class="panel-title">
+							<i class="fa fa-bar-chart-o"></i> Away Team Performance
+						</h3>
+					</div>
+					<div class="panel-body">
+						<div id="chart2"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<h3 class="panel-title">
+							<i class="fa fa-th"></i> Players
+						</h3>
+					</div>
+					<div class="panel-body">
+						<table class="table table-striped">
+							<tr>
+								<th>Code</th>
+								<th>Full name</th>
+								<th>Position</th>
+								<th>&nbsp;</th>
+							</tr>
+<?php foreach ($players as $player) : ?>
+<tr>
+								<td><?php echo $this->escapeHtml($player->getId());?></td>
+								<td><?php echo $this->escapeHtml($player->getFullname());?></td>
+								<td><?php echo $this->escapeHtml($player->getPosition());?></td>
+								<td><button
+										data-url="/nflgames-api/players/<?php echo $player->getId() ?>"
+										class="btn btn-default btn-xs profile" role="button">See
+										profile</button></td>
+							</tr>
+ <?php endforeach; ?>
+ </table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- /#wrapper -->
+<script type="text/javascript">
+        jQuery(function ($) {
+                  
+        });        
+    </script>
+
+<!-- PBAFooter START -->
+<div style="width: 100%; height: 50px; clear: both;">&nbsp;</div>
+<div id="pbafooter" class="pbfooter">
+	<div class="container">
+		<p>&copy; 2005 - <?php echo date('Y') ?> by Zend Technologies Ltd. <?php echo $this->translate('All rights reserved.') ?></p>
+	</div>
+</div>
+
+<style>
+.pbfooter {
+	width: 100%;
+	height: 50px;
+	background-color: #F58723;
+	color: white;
+	top: 0;
+	left: 0;
+	z-index: 1200;
+	padding-top: 15px;
+}
+</style>
+
+<script type="text/javascript">
+    jQuery(function ($) {
+        // put the pbfooter on the bottom of the page
+        var height = ($(document).height() - $("#pbafooter").height()) + "px";        
+        $("#pbafooter").css("top", ($(document).height() - $("#pbafooter").height()) + "px");
+
+        $(".profile").click(function() {
+            var url = $(this).attr("data-url");
+            $.get(url, function(data) {
+                $("#player-info").show();
+                $("#photo").attr("src", data.photo);
+                $("#height").empty().append(data.player.height);
+                $("#weight").empty().append(data.player.weight);
+                $("#born").empty().append(data.player.birthdate);
+                $("#college").empty().append(data.player.college);
+                $("#experience").empty().append(data.player.experience);
+            });
+            return false;
+        });
+    });
+</script>
+<!-- PBAFooter END -->

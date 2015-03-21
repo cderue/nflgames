@@ -47,7 +47,7 @@ class PlayersController extends AbstractActionController
             if (strpos($src, '200x200')) {
                 $photo = $src;
             }
-        }
+        }   
         
         return array('photo' => $photo, 'player' => $player);  
     }

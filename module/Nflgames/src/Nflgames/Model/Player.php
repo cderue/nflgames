@@ -184,7 +184,7 @@ class Player
         $this->profileUrl = $profileUrl;
     }
 
- public function exchangeArray($data)
+    public function exchangeArray($data)
     {
         $this->id = (! empty($data['player_id'])) ? $data['player_id'] : null;
         $this->fullname = (! empty($data['full_name'])) ? $data['full_name'] : null;
@@ -195,5 +195,10 @@ class Player
         $this->college = (! empty($data['college'])) ? $data['college'] : null;
         $this->experience = (! empty($data['years_pro'])) ? $data['years_pro'] : null;
         $this->profileUrl = (! empty($data['profile_url'])) ? $data['profile_url'] : null;
+    }
+    
+    public function toArray() 
+    {
+        return get_object_vars($this);
     }
 }

@@ -46,8 +46,13 @@ return array(
             },
             'Nflgames\Model\PlayerTable' => function ($sm) {
                 $tableGateway = $sm->get('PlayerTableGateway');
-               
+                
                 $table = new PlayerTable($tableGateway);
+                return $table;
+            },
+            'Nflgames\Model\GameTable' => function ($sm) {
+                $tableGateway = $sm->get('GameTableGateway');
+                $table = new TeamTable($tableGateway);
                 return $table;
             },
             'TeamTableGateway' => function ($sm) {
@@ -61,6 +66,12 @@ return array(
                 $resultSetPrototype = new ResultSet();
                 $resultSetPrototype->setArrayObjectPrototype(new Player());
                 return new TableGateway('player', $dbAdapter, null, $resultSetPrototype);
+            },
+            'GameTableGateway' => function ($sm) {
+                $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+                $resultSetPrototype = new ResultSet();
+                $resultSetPrototype->setArrayObjectPrototype(new Game());
+                return new TableGateway('game', $dbAdapter, null, $resultSetPrototype);
             }
         )
     ),
@@ -69,7 +80,8 @@ return array(
         'invokables' => array(
             'Nflgames\Controller\Index' => 'Nflgames\Controller\IndexController',
             'Nflgames\Controller\Teams' => 'Nflgames\Controller\TeamsController',
-            'Nflgames\Controller\Players' => 'Nflgames\Controller\PlayersController'
+            'Nflgames\Controller\Players' => 'Nflgames\Controller\PlayersController',
+            'Nflgames\Controller\Dashboard' => 'Nflgames\Controller\DashboardController'
         )
     ),
     'view_manager' => array(

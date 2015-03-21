@@ -19,6 +19,10 @@ class TeamsController extends AbstractActionController
     public function indexAction()
     {
         $teams = $this->getTeamTable()->fetchAll();
-        return array('teams' => $teams);
+        echo '<pre>';
+        var_dump($teams->toArray());
+        echo '</pre>';
+        exit;
+        //return array('teams' => $teams);
     }
 }
