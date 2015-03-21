@@ -1,14 +1,15 @@
 {
-    "name": "zendframework/skeleton-application",
-    "description": "Skeleton Application for ZF2",
-    "license": "BSD-3-Clause",
-    "keywords": [
-        "framework",
-        "zf2"
-    ],
-    "homepage": "http://framework.zend.com/",
-    "require": {
-        "php": ">=5.3.3",
-        "zendframework/zendframework": "~2.3"
-    }
+  "name" : "zendframework/skeleton-application",
+  "description" : "Skeleton Application for ZF2",
+  "require" : {
+    "php" : ">=5.3.3",
+    "zendframework/zendframework" : "~2.3",
+    "cerbero/yos-social-php5" : "dev-master",
+    "auth0/auth0-php": "0.6.*",
+  	"adoy/oauth2": "dev-master",
+  	"vlucas/phpdotenv": "dev-master"
+  },
+  "license" : "BSD-3-Clause",
+  "keywords" : [ "framework", "zf2" ],
+  "homepage" : "http://framework.zend.com/"
 }

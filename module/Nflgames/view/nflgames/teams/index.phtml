@@ -1,0 +1,22 @@
+<?php
+$title = 'Teams';
+$this->headTitle($title);
+?>
+
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+<table class="table table-striped">
+	<tr>
+		<th>Code</th>
+		<th>Name</th>
+		<th>City</th>
+		<th>&nbsp;</th>
+	</tr>
+<?php foreach ($teams as $team) : ?>
+<tr>
+    <td><?php echo $this->escapeHtml($team->getId());?></td>
+	<td><?php echo $this->escapeHtml($team->getName());?></td>
+	<td><?php echo $this->escapeHtml($team->getCity());?></td>
+	<td><a href="/nflgames/players?team_id=<?php echo $team->getId()?>" class="btn btn-default btn-xs" role="button">See players</a></td>
+</tr>
+ <?php endforeach; ?>
+ </table>

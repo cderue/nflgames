@@ -1,0 +1,15 @@
+<div id="root" style="width: 280px; margin: 40px auto; padding: 10px; border-width: 1px;">
+</div>
+<script src="https://cdn.auth0.com/js/lock-7.1.min.js"></script>
+<script>
+  var lock = new Auth0Lock('CGw3Tzj3tiXFxDBTvmzIgtvF2hMd130B', 'cderue.auth0.com');
+  
+  lock.show({
+      container: 'root'
+    , callbackURL: 'http://localhost:8000/nflgames/teams'
+    , responseType: 'code'
+    , authParams: {
+      scope: 'openid profile'
+    }
+  });
+</script>

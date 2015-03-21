@@ -10,7 +10,16 @@
  * control, so do not include passwords or other sensitive information in this
  * file.
  */
-
 return array(
-    // ...
+    'db' => array(
+        'driver' => 'Pdo_Pgsql',
+        'database' => 'nfldb',
+        'username' => 'nfldb',
+        'password' => 'nfldb'
+    ),
+    'service_manager' => array(
+        'factories' => array(
+            'Zend\Db\Adapter\Adapter' => 'Zend\Db\Adapter\AdapterServiceFactory'
+        )
+    )
 );

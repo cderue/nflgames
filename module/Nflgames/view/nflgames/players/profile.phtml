@@ -1,0 +1,20 @@
+<?php
+$title = $player->getFullname();
+$this->headTitle($title);
+?>
+
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+<section id="profile" class="well">
+	<div class="row">
+		<div class="col-lg-5 col-sm-2 photo" >
+			<img src="<?php echo $photo ?>"/>
+		</div>
+
+		<div class="col-lg-7 col-sm-2">
+		    <p><strong>Height: </strong><?php echo $player->getHeight() ?> <strong>Weight: </strong><?php echo $player->getWeight() ?></p>
+            <p><strong>Born: </strong><?php echo $player->getBirthdate()?> </p>
+            <p><strong>College: </strong><?php echo $player->getCollege() ?></p>
+            <p><strong>Experience: </strong><?php echo $player->getExperience() ?> seasons</p>
+		</div>
+	</div>
+</section>
