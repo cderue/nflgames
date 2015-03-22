@@ -10,6 +10,8 @@ class DashboardController extends AbstractActionController
     
     protected $playerTable;
     
+    protected $gameTable;
+    
     public function getTeamTable()
     {
         if (!$this->teamTable) {
@@ -28,6 +30,15 @@ class DashboardController extends AbstractActionController
         return $this->playerTable;
     }
     
+    public function getGameTable()
+    {
+        if (!$this->gameTable) {
+            $this->gameTable = $this->getServiceLocator()->get('Nflgames\Model\GameTable');
+        }
+    
+        return $this->gameTable;
+    }
+    
     public function indexAction()
     {
         $teams = $this->getTeamTable()->fetchAll();  
@@ -38,6 +49,9 @@ class DashboardController extends AbstractActionController
         }
         $players = $this->getPlayerTable()->getByTeam($teamId);
         
-        return array('teamId' => $teamId, 'teams' => $teams, 'players' => $players);
+        $homeGamesCount = $this->getGameTable()->getByHomeTeam($teamId)->count();
+        $awayGamesCount = $this->getGameTable()->getByAwayTeam($teamId)->count();
+        
+        return array('homeGamesCount' => $homeGamesCount, 'awayGamesCount' => $awayGamesCount, 'teamId' => $teamId, 'teams' => $teams, 'players' => $players);
     }
 }

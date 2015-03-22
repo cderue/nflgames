@@ -2,8 +2,8 @@
 namespace Nflgames\Model;
 
 use Zend\Db\TableGateway\TableGateway;
-use Zend\Db\Sql\Where;
-use Zend\Db\Sql\Predicate\Like;
+//use Zend\Db\Sql\Where;
+//use Zend\Db\Sql\Predicate\Expression;
 
 class GameTable
 {
@@ -22,10 +22,10 @@ class GameTable
     
     public function getByTeam($teamId)
     {
-        $where = new Where();
-        $where->addPredicate(new Like('home_team', $teamId));
-        $where->orPredicate(new Like('away_team', $teamId));
-        $resultSet = $this->tableGateway->select($where);
+        //$where = new Where();
+        //$where->addPredicate(new Like('home_team', $teamId));
+        //$where->orPredicate(new Like('away_team', $teamId));
+        $resultSet = $this->tableGateway->select("home_team = 'ARI' OR away_team = 'ARI'");
         return $resultSet;
     }
     

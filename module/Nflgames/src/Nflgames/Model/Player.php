@@ -15,12 +15,14 @@ class Player
     private $weight;
 
     private $birthdate;
-    
+
     private $college;
 
     private $experience;
-    
+
     private $profileUrl;
+
+    private $status;
 
     /**
      *
@@ -135,6 +137,7 @@ class Player
     }
 
     /**
+     *
      * @return the $college
      */
     public function getCollege()
@@ -142,15 +145,16 @@ class Player
         return $this->college;
     }
 
- /**
-     * @param field_type $college
+    /**
+     *
+     * @param field_type $college            
      */
     public function setCollege($college)
     {
         $this->college = $college;
     }
 
- /**
+    /**
      *
      * @return the $experience
      */
@@ -169,6 +173,7 @@ class Player
     }
 
     /**
+     *
      * @return the $profileUrl
      */
     public function getProfileUrl()
@@ -176,12 +181,31 @@ class Player
         return $this->profileUrl;
     }
 
- /**
-     * @param field_type $profileUrl
+    /**
+     *
+     * @param field_type $profileUrl            
      */
     public function setProfileUrl($profileUrl)
     {
         $this->profileUrl = $profileUrl;
+    }
+
+    /**
+     *
+     * @return the $status
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     *
+     * @param field_type $status            
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
     }
 
     public function exchangeArray($data)
@@ -195,9 +219,10 @@ class Player
         $this->college = (! empty($data['college'])) ? $data['college'] : null;
         $this->experience = (! empty($data['years_pro'])) ? $data['years_pro'] : null;
         $this->profileUrl = (! empty($data['profile_url'])) ? $data['profile_url'] : null;
+        $this->status = (! empty($data['status'])) ? $data['status'] : null;
     }
-    
-    public function toArray() 
+
+    public function toArray()
     {
         return get_object_vars($this);
     }

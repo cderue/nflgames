@@ -8,7 +8,7 @@ class GamesController extends AbstractActionController
 {
 
     protected $gameTable;
-    
+
     public function indexAction()
     {
         $teamId = $this->params()->fromQuery('team_id');
@@ -17,7 +17,14 @@ class GamesController extends AbstractActionController
         }
         $games = $this->getGameTable()->getByTeam($teamId);
         
-        return new JsonModel(array('games' => $games));
+        $data = array();
+        foreach ($games as $game) {
+            $data[] = $game->toArray();
+        }
+        
+        return new JsonModel(array(
+            'data' => $data
+        ));
     }
 
     public function getGameTable()
@@ -59,25 +66,33 @@ class GamesController extends AbstractActionController
             }
         }
         
-        $stats[] = array(
-            'label' => 'Preseason',
-            'value' => $winPreCount
-        );
-        $stats[] = array(
-            'label' => 'Regular season',
-            'value' => $winRegularCount
-        );
-        $stats[] = array(
-            'label' => 'Postseason',
-            'value' => $winPostCount
-        );
+        if ($winPreCount > 0) {
+            $stats[] = array(
+                'label' => 'Preseason',
+                'value' => $winPreCount
+            );
+        }
+        if ($winRegularCount > 0) {
+            $stats[] = array(
+                'label' => 'Regular season',
+                'value' => $winRegularCount
+            );
+        }
+        if ($winPostCount > 0) {
+            $stats[] = array(
+                'label' => 'Postseason',
+                'value' => $winPostCount
+            );
+        }
         
-        return new JsonModel(array('data' => $stats));
+        return new JsonModel(array(
+            'data' => $stats
+        ));
     }
 
     public function awayWinAction()
     {
-         $teamId = $this->params()->fromQuery('team_id');
+        $teamId = $this->params()->fromQuery('team_id');
         if (! $teamId) {
             $teamId = 'ARI';
         }
@@ -105,19 +120,27 @@ class GamesController extends AbstractActionController
             }
         }
         
-        $stats[] = array(
-            'label' => 'Preseason',
-            'value' => $winPreCount
-        );
-        $stats[] = array(
-            'label' => 'Regular season',
-            'value' => $winRegularCount
-        );
-        $stats[] = array(
-            'label' => 'Postseason',
-            'value' => $winPostCount
-        );
+        if ($winPreCount > 0) {
+            $stats[] = array(
+                'label' => 'Preseason',
+                'value' => $winPreCount
+            );
+        }
+        if ($winRegularCount > 0) {
+            $stats[] = array(
+                'label' => 'Regular season',
+                'value' => $winRegularCount
+            );
+        }
+        if ($winPostCount > 0) {
+            $stats[] = array(
+                'label' => 'Postseason',
+                'value' => $winPostCount
+            );
+        }
         
-        return new JsonModel(array('data' => $stats));
+        return new JsonModel(array(
+            'data' => $stats
+        ));
     }
 }
