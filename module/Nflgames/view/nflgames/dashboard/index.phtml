@@ -39,7 +39,7 @@
 				<div class="panel panel-primary">
 					<div class="panel-heading">
 						<h3 class="panel-title">
-							<i class="fa fa-bar-chart-o"></i> Home Team Performance
+							<i class="fa fa-bar-chart-o"></i> Home Team Performance (home win percentage)
 						</h3>
 					</div>
 					<div class="panel-body">
@@ -52,7 +52,7 @@
 				<div class="panel panel-primary">
 					<div class="panel-heading">
 						<h3 class="panel-title">
-							<i class="fa fa-bar-chart-o"></i> Away Team Performance
+							<i class="fa fa-bar-chart-o"></i> Away Team Performance (away win percentage)
 						</h3>
 					</div>
 					<div class="panel-body">
@@ -142,6 +142,32 @@
             });
             return false;
         });
+
+        Morris.Donut({
+      	  element: 'chart1',
+      	  labelColor: "white",
+          formatter: function(y) {
+      	    return y + '%';
+          },
+      	  data: [
+      	    {label: "Preseason", value: 12},
+      	    {label: "Regular season", value: 30},
+      	    {label: "Postseason", value: 20}
+      	  ]
+      	});
+
+        Morris.Donut({
+      	  element: 'chart2',
+          labelColor: "white",
+          formatter: function(y) {
+      	    return y + '%';
+          },
+      	  data: [
+      	    {label: "Preseason", value: 12},
+      	    {label: "Regular season", value: 30},
+      	    {label: "Postseason", value: 20}
+      	  ]
+      	});
     });
 </script>
 <!-- PBAFooter END -->

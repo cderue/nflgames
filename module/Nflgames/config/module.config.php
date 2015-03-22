@@ -3,8 +3,10 @@ use Zend\Db\ResultSet\ResultSet;
 use Zend\Db\TableGateway\TableGateway;
 use Nflgames\Model\TeamTable;
 use Nflgames\Model\PlayerTable;
+use Nflgames\Model\GameTable;
 use Nflgames\Model\Team;
 use Nflgames\Model\Player;
+use Nflgames\Model\Game;
 
 return array(
     'router' => array(
@@ -52,7 +54,7 @@ return array(
             },
             'Nflgames\Model\GameTable' => function ($sm) {
                 $tableGateway = $sm->get('GameTableGateway');
-                $table = new TeamTable($tableGateway);
+                $table = new GameTable($tableGateway);
                 return $table;
             },
             'TeamTableGateway' => function ($sm) {
