@@ -9,24 +9,6 @@ class GamesController extends AbstractActionController
 
     protected $gameTable;
 
-    public function indexAction()
-    {
-        $teamId = $this->params()->fromQuery('team_id');
-        if (! $teamId) {
-            $teamId = 'ARI';
-        }
-        $games = $this->getGameTable()->getByTeam($teamId);
-        
-        $data = array();
-        foreach ($games as $game) {
-            $data[] = $game->toArray();
-        }
-        
-        return new JsonModel(array(
-            'data' => $data
-        ));
-    }
-
     public function getGameTable()
     {
         if (! $this->gameTable) {
@@ -41,6 +23,10 @@ class GamesController extends AbstractActionController
         $teamId = $this->params()->fromQuery('team_id');
         if (! $teamId) {
             $teamId = 'ARI';
+        }
+        
+        if (strlen((string)$teamId) > 3) {
+            throw new \Exception('Bad team identifier!');
         }
         
         $games = $this->getGameTable()->getByHomeTeam($teamId);
@@ -95,6 +81,10 @@ class GamesController extends AbstractActionController
         $teamId = $this->params()->fromQuery('team_id');
         if (! $teamId) {
             $teamId = 'ARI';
+        }
+        
+        if (strlen((string)$teamId) > 3) {
+            throw new \Exception('Bad team identifier!');
         }
         
         $games = $this->getGameTable()->getByAwayTeam($teamId);

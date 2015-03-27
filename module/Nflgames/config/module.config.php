@@ -14,7 +14,7 @@ return array(
             'nflgames' => array(
                 'type' => 'Literal',
                 'options' => array(
-                    'route' => '/nflgames',
+                    'route' => '/games',
                     'defaults' => array(
                         '__NAMESPACE__' => 'Nflgames\Controller',
                         'controller' => 'Index',
@@ -80,9 +80,6 @@ return array(
     
     'controllers' => array(
         'invokables' => array(
-            'Nflgames\Controller\Index' => 'Nflgames\Controller\IndexController',
-            'Nflgames\Controller\Teams' => 'Nflgames\Controller\TeamsController',
-            'Nflgames\Controller\Players' => 'Nflgames\Controller\PlayersController',
             'Nflgames\Controller\Dashboard' => 'Nflgames\Controller\DashboardController'
         )
     ),

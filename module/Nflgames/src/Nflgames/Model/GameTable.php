@@ -25,7 +25,7 @@ class GameTable
         //$where = new Where();
         //$where->addPredicate(new Like('home_team', $teamId));
         //$where->orPredicate(new Like('away_team', $teamId));
-        $resultSet = $this->tableGateway->select("home_team = 'ARI' OR away_team = 'ARI'");
+        $resultSet = $this->tableGateway->select("home_team = '" . $teamId . "' OR away_team = '" . $teamId . "' ORDER BY season_year DESC");
         return $resultSet;
     }
     

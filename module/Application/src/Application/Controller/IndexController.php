@@ -16,6 +16,6 @@ class IndexController extends AbstractActionController
 {
     public function indexAction()
     {
-        $this->redirect()->toUrl('/nflgames/dashboard');
+        $this->redirect()->toUrl('/nfl/games/dashboard');
     }
 }

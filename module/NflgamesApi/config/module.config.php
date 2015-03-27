@@ -5,7 +5,7 @@ return array(
             'nflgames-api' => array(
                 'type' => 'Literal',
                 'options' => array(
-                    'route' => '/nflgames-api',
+                    'route' => '/games-api',
                     'defaults' => array(
                         '__NAMESPACE__' => 'NflgamesApi\Controller',
                     )
@@ -33,7 +33,6 @@ return array(
     
     'controllers' => array(
         'invokables' => array(
-            'NflgamesApi\Controller\Players' => 'NflgamesApi\Controller\PlayersController',
             'NflgamesApi\Controller\Games' => 'NflgamesApi\Controller\GamesController',
         )
     ),

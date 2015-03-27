@@ -1,4 +1,4 @@
-﻿/* Dark Admin Bootstrap Theme by PrepBootstrap - http://www.prepbootstrap.com */
+/* Dark Admin Bootstrap Theme by PrepBootstrap - http://www.prepbootstrap.com */
 html {
   font-family: sans-serif;
   -ms-text-size-adjust: 100%;
@@ -4415,7 +4415,7 @@ a.thumbnail.active {
   color: #BDBDBD;
 }
 .alert {
-  padding: 15px;
+  /*padding: 15px;*/
   margin-bottom: 20px;
   border: 1px solid transparent;
   border-radius: 4px;
@@ -4455,8 +4455,8 @@ a.thumbnail.active {
   color: #e6e6e6;
 }
 .alert-info {
-  background-color: #9933cc;
-  border-color: #6e2caf;
+  background-color: #0E1C4D;
+  border-color: #0E1C4D;
   color: #ffffff;
 }
 .alert-info hr {
@@ -4752,7 +4752,7 @@ a.list-group-item-danger.active:focus {
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
 }
 .panel-body {
-  padding: 15px;
+  padding: 8px;
 }
 .panel-heading {
   padding: 10px 15px;
@@ -5874,7 +5874,7 @@ legend {
 
 
 body {
-  margin-top: 70px;
+  margin-top: 40px;
 }
 
 #wrapper {

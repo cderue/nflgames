@@ -40,13 +40,30 @@ class DashboardController extends AbstractActionController
     }
     
     public function indexAction()
-    {
+    {  
         $teams = $this->getTeamTable()->fetchAll();  
+        $teams2 = $this->getTeamTable()->fetchAll();
+        $teamsArr = array();
+        
+        /* Hack for Z-Ray */
+        if (!isset($_SESSION['teams'])) {
+            foreach ($teams2 as $team) {
+                $teamsArr[$team->getId()] = $team->getCity()  . ' ' . $team->getName();
+            }
+            $_SESSION['teams'] = $teamsArr;
+        } else {
+            $teamsArr = $_SESSION['teams'];
+        }
         
         $teamId = $this->params()->fromQuery('team_id');
         if (!$teamId) {
             $teamId = 'ARI';   
         }
+        
+        if (strlen((string)$teamId) > 3) {
+            throw new \Exception('Bad team identifier!');
+        }
+        
         $players = $this->getPlayerTable()->getByTeam($teamId);
         
         $homeGamesCount = $this->getGameTable()->getByHomeTeam($teamId)->count();
