@@ -25,7 +25,7 @@ class GamesController extends AbstractActionController
             $teamId = 'ARI';
         }
         
-        if (strlen((string)$teamId) > 3) {
+        if (strlen((string)$teamId) != 3) {
             throw new \Exception('Bad team identifier!');
         }
         
@@ -83,7 +83,7 @@ class GamesController extends AbstractActionController
             $teamId = 'ARI';
         }
         
-        if (strlen((string)$teamId) > 3) {
+        if (strlen((string)$teamId) != 3) {
             throw new \Exception('Bad team identifier!');
         }
         
